@@ -5,4 +5,25 @@ ECE 331 HW1
 
 2) Kernel Coding Style document read
 
-3) 
+3)a)
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+	int i;
+
+	if (argc > 1){
+		for (i = 1; i < argc; i++){
+			printf("%s\t",argv[i]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+b) ./args "Game of Thrones \$eason 1 Episode 4.mp4" *[\\][\\][\\][\\]*
+
+4) 
