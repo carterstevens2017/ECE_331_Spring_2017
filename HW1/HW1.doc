@@ -1,3 +1,33 @@
+Carter Stevens
+ECE 331 HW1
+
+1) Openvim tutorial completed
+
+2) Kernel Coding Style document read
+
+3)a)
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+	int i;
+
+	if (argc > 1){
+		for (i = 1; i < argc; i++){
+			printf("%s\t",argv[i]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+b) ./args "Game of Thrones \$eason 1 Episode 4.mp4" *[\\][\\][\\][\\]*
+
+4)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -66,3 +96,42 @@ int main(int argc, char *argv[])
 	free(values);
 	return 0;
 }
+
+5)
+
+#! /usr/bin/octave -qf
+
+data = load("timing.dat");
+bytes = data(:,1);
+start_time_seconds = data(:,2);
+start_time_nseconds = data(:,3);
+end_time_seconds = data(:,4);
+end_time_nseconds = data(:,5);
+start_time = (1000000000.*start_time_seconds).+start_time_nseconds;
+end_time = (1000000000.*end_time_seconds)+end_time_nseconds;
+times_ns = end_time .- start_time;
+times_s = times_ns./1000000000;
+Mbytes = bytes./1000000;
+speeds = Mbytes./times_s;
+
+semilogx(bytes, speeds, ".r", "linestyle", "-")
+title("Speed of Memory Access vs. Buffer Size")
+xlabel("Data Size (Bytes)")
+ylabel("Memory Speed (MB/s)")
+pause()
+
+6)a) The purpose of the /sys directory is to act as a pseudo file system 
+     (created by the kernel) to provide information about subsystems and 
+     connected devices.
+
+  b) /usr/lib/ requires that all architecture-dependent data exclusively 
+     used by an application must be placed within the same subdirectory.
+
+7) SSH key left over from last year. Silver linings to an F 
+
+8)
+a) alias ll="ll -alF --color"
+b) ls -X
+c) mv x /tmp/
+   mv /tmp/x /tmp/y
+d) rm -f *{10..25}*

@@ -1,0 +1,18 @@
+//ECE 331 HW 2
+//Carter Stevens
+//Jan 27, 2017
+
+1)
+a) apt-cache search weather-util
+b) sudo apt-get install weather-util
+c) dpkg-query -L weather-util
+d) sudo dpkg -r weather-util
+
+2)
+a) apt-get source avrdude
+b) wget "http://savannah.nongnu.org/bugs/download.php?file_id=32171"
+c) mv download.php?file_id=32171 avrdude-6.1/endpointdetect_pass1.patch
+   cd avrdude-6.1/
+   patch < endpointdetect_pass1.patch
+d) sudo apt-get build-dep avrdude 
+e) 

@@ -1,0 +1,63 @@
+--- stk500v2.c	(revision 1334)
++++ stk500v2.c	(working copy)
+@@ -1597,9 +1597,9 @@
+     pinfo.usbinfo.pid = USB_DEVICE_AVRISPMKII;
+     PDATA(pgm)->pgmtype = PGMTYPE_AVRISP_MKII;
+     pgm->set_sck_period = stk500v2_set_sck_period_mk2;
+-    pgm->fd.usb.max_xfer = USBDEV_MAX_XFER_MKII;
+-    pgm->fd.usb.rep = USBDEV_BULK_EP_READ_MKII;
+-    pgm->fd.usb.wep = USBDEV_BULK_EP_WRITE_MKII;
++    pgm->fd.usb.max_xfer = 0;
++    pgm->fd.usb.rep = -1;
++    pgm->fd.usb.wep = -1;
+     pgm->fd.usb.eep = 0;           /* no seperate EP for events */
+ #else
+     avrdude_message(MSG_INFO, "avrdude was compiled without usb support.\n");
+@@ -1655,7 +1655,7 @@
+     pinfo.usbinfo.pid = USB_DEVICE_STK600;
+     PDATA(pgm)->pgmtype = PGMTYPE_STK600;
+     pgm->set_sck_period = stk600_set_sck_period;
+-    pgm->fd.usb.max_xfer = USBDEV_MAX_XFER_MKII;
++    pgm->fd.usb.max_xfer = 0;
+     pgm->fd.usb.rep = USBDEV_BULK_EP_READ_STK600;
+     pgm->fd.usb.wep = USBDEV_BULK_EP_WRITE_STK600;
+     pgm->fd.usb.eep = 0;           /* no seperate EP for events */
+@@ -3361,9 +3361,9 @@
+     pinfo.usbinfo.vid = USB_VENDOR_ATMEL;
+     pinfo.usbinfo.flags = 0;
+     pinfo.usbinfo.pid = USB_DEVICE_JTAGICEMKII;
+-    pgm->fd.usb.max_xfer = USBDEV_MAX_XFER_MKII;
+-    pgm->fd.usb.rep = USBDEV_BULK_EP_READ_MKII;
+-    pgm->fd.usb.wep = USBDEV_BULK_EP_WRITE_MKII;
++    pgm->fd.usb.max_xfer = 0;
++    pgm->fd.usb.rep = -1;
++    pgm->fd.usb.wep = -1;
+     pgm->fd.usb.eep = 0;           /* no seperate EP for events */
+ #else
+     avrdude_message(MSG_INFO, "avrdude was compiled without usb support.\n");
+@@ -3472,9 +3472,9 @@
+     pinfo.usbinfo.vid = USB_VENDOR_ATMEL;
+     pinfo.usbinfo.flags = 0;
+     pinfo.usbinfo.pid = USB_DEVICE_AVRDRAGON;
+-    pgm->fd.usb.max_xfer = USBDEV_MAX_XFER_MKII;
+-    pgm->fd.usb.rep = USBDEV_BULK_EP_READ_MKII;
+-    pgm->fd.usb.wep = USBDEV_BULK_EP_WRITE_MKII;
++    pgm->fd.usb.max_xfer = 0;
++    pgm->fd.usb.rep = -1;
++    pgm->fd.usb.wep = -1;
+     pgm->fd.usb.eep = 0;           /* no seperate EP for events */
+ #else
+     avrdude_message(MSG_INFO, "avrdude was compiled without usb support.\n");
+@@ -3550,9 +3550,9 @@
+     pinfo.usbinfo.vid = USB_VENDOR_ATMEL;
+     pinfo.usbinfo.flags = 0;
+     pinfo.usbinfo.pid = USB_DEVICE_AVRDRAGON;
+-    pgm->fd.usb.max_xfer = USBDEV_MAX_XFER_MKII;
+-    pgm->fd.usb.rep = USBDEV_BULK_EP_READ_MKII;
+-    pgm->fd.usb.wep = USBDEV_BULK_EP_WRITE_MKII;
++    pgm->fd.usb.max_xfer = 0;
++    pgm->fd.usb.rep = -1;
++    pgm->fd.usb.wep = -1;
+     pgm->fd.usb.eep = 0;           /* no seperate EP for events */
+ #else
+     avrdude_message(MSG_INFO, "avrdude was compiled without usb support.\n");
