@@ -15,4 +15,21 @@ c) mv download.php?file_id=32171 avrdude-6.1/endpointdetect_pass1.patch
    cd avrdude-6.1/
    patch < endpointdetect_pass1.patch
 d) sudo apt-get build-dep avrdude 
-e) 
+e) cp avr.c avr_patch.c
+   vim avr_patch.c
+   make changes
+   :x
+   diff avr.c avr_patch.c > avr.patch
+   patch avr.c -i avr.patch -o avr_patch.c
+f) ./configure
+   mv avr.patch ../
+   mv avr_patch.c ../
+   make 
+g) sudo make install
+h) 
+21c21
+< 
+---
+> /*ECE 331 Patch created for HW2*/
+
+
