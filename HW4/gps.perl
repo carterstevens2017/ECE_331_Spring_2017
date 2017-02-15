@@ -1,17 +1,18 @@
 #!/usr/bin/perl
 
-use strict;
 use warnings;
+$\ = "\n";
+$, = "\n";
 
-my $filename = 'test.txt';
-open(my $fh, '<:encoding(UTF-8)', $filename)
-	or die "Could not open file '$filename' $!";
+while (<STDIN>){
 
-while (my $row = <$fh>) {
-	chomp $row;
-	print "$row\n";
+	$dateere = qr/(\d{4}-\d{2}-\d{2} (\d{2}:\d{2}:\d{2}) [A-Z]{3}):/;
+	$pathere = qr/(.+):/;
+	$dataere = qr/ /;
+	
+	 
+	print $3 if (/$dateere $pathere/)
 }
-print "done\n";
 
 
 
