@@ -1,0 +1,47 @@
+
+foreach (@d)
+	chomp;
+	next if (/^$/);
+	@x=split(' ');
+	$addr=hex($x[0]);
+	if (($addr&0x000001FF)==0) {
+		$1[$i]=~s/F+$//;
+		$i++;
+	}
+	$1[$i]=$1[$i] . $x[2];
+}
+$1[$i]=~s/F+$//;
+foreach (@l) {
+	next if (length($_)<=0);
+	s/(..)/chr(hex($1))/ge;
+	$sd
+}
+
+pack/unpack: Z is null terminated ascii strings followed by number of bytes
+	a is single character
+	l is signed 32 bit int, L unsigned
+	< and > little and big endian respectively
+	s is signed 16 bit int, S unsigned
+	C is 8 bit int (or char)
+
+man perldata for perl datatypes
+man perlsyn for perl syntax
+man perlop for perl operators
+man perlvar for predefined variables
+
+$x=~/\d+/ checks if scalar x contains string of digits
+if($x eq "hello") is strcmp
+
+run executables in perl	
+#!/usr/bin/perl
+@f=`/bin/ls`;
+$,='|';				field seperator changed to pipe
+$\='\n';
+$sum = 0;				newline after prints w/ record seperator
+foreach $l (@f) {
+	@x=split(/\s+/,$l);	split on white space
+	$sum+=$x[4];
+}
+print "Total is $sum\n";
+
+
