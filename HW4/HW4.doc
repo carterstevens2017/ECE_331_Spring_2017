@@ -1,0 +1,113 @@
+Carter Stevens
+ECE 331 HW4
+
+1)
+#!/usr/bin/perl
+
+use warnings;
+$\ = "\n";
+
+while (<STDIN>){
+
+	$dateere = qr/(\d{4}-\d{2}-\d{2} (\d{2}:\d{2}:\d{2}) [A-Z]{3}):/;
+	$pathere = qr/(.+)/;
+	$dataere = qr/\/.+h([\d]{4}\.[\d]{2}[NS])\/([\d]{5}\.[\d]{2}[EW]).+/;
+	
+	 
+	if (/$dateere $pathere:$dataere/){
+		$date = $1;
+		$time = $2;
+		$path = $3;
+		$lat = $4;
+		$long = $5;
+	}
+	print $long;
+}
+
+2)
+#!/usr/bin/perl
+
+use warnings;
+
+$nameere = qr/.*\/(.+)\..+/;
+$dateere = qr/(\d{4}-\d{2}-\d{2} (\d{2}:\d{2}:\d{2}) [A-Z]{3}):/;
+$pathere = qr/(.+)/;
+$dataere = qr/\/([\d]{6})h([\d]{4}\.[\d]{2}[NS])\/([\d]{5}\.[\d]{2}[EW]).+A=([\d]{6}).+/;
+
+$filename = $ARGV[0];
+open($fh, $filename) or die "Could not open file '$filename' $!";
+if($filename =~ /$nameere/){
+	$name = $1;
+	$name1 = $name . ".gpx";
+}
+open($output, '>', $name1) or die "Could not create file '$output' $!";
+print $output "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+print $output "<gpx version=\"1.0\">\n";
+print $output "\t<name>$name</name>\n";
+print $output "\t<trk><name>Example gpx</name><number>1</number><trkseg>\n";
+
+$UTC = 0;
+
+while (<$fh>){
+	$lastUTC = $UTC;	 
+	if (/$dateere $pathere:$dataere/){
+		$date = $1;
+		$time = $2;
+		$path = $3;
+		$UTC = $4;
+		$lat = $5;
+		$long = $6;
+		$ele = $7;
+	}
+	next if ($UTC <= $lastUTC);
+	print $output "\t\t<trkpt lat=\"$lat\" lon=\"$long\"><ele>$ele</ele>";
+	print $output "<time>$date</time></trkpt>\n";
+}
+print $output "\t</trkseg></trk>\n";
+print $output "</gpx>";
+
+3)
+#include <stdio.h>
+#include <stdlib.h>
+
+char *x_strstr(const char *haystack, const char *needle);
+
+int main(int argc, char *argv[]){
+	const char *haystack = argv[1];
+	const char *needle = argv[2];
+	char *ret;
+
+	if(argc != 3){
+		printf("Incorrect arguments, FUNCTION_CALL HAYSTACK NEEDLE");
+		return 1;
+	}
+
+	ret = x_strstr(haystack, needle);
+	if(ret == NULL){
+		printf("String not found\n");
+		return 1;
+	}
+	printf("%s\n", ret);
+	return 0;
+}
+
+
+
+char *x_strstr(const char *haystack, const char *needle){
+
+	int hayind = 0, needind = 0, j = 0;
+	char *ret = NULL;
+
+	while(*(haystack + hayind)!='\0'){
+		while(*(needle + needind) == *(haystack + hayind + j)){
+			needind++;
+			j++;
+			if(*(haystack + hayind + j) == '\0') return ret;
+			if(*(needle + needind) == '\0') return needle;	
+		}
+		hayind++;
+		j = 0;
+		needind = 0;
+	}
+	return ret;
+}
