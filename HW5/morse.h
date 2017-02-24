@@ -5,3 +5,4 @@ struct morse_char{
 
 extern struct morse_char lookup[256];
 
+void initmorse(void);
