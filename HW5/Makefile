@@ -1,9 +1,12 @@
 TARGET = morse
-CFLAGS = -g -Wall
 OBJS = morse.o hw5.o
+CFLAGS = -g -Wall
 LIBS = -lm
 
-all: ${TARGET}: ${OBJS}
+.PHONY: all clean
+
+all: ${TARGET}
+${TARGET}: ${OBJS}
 	${CC} -o ${TARGET} ${OBJS} ${LIBS}
 
 clean:

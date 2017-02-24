@@ -23,6 +23,8 @@ int main(int argc, char *argv[]){
 	input = argv[1];
 	len = strlen(input);
 	
+	//print preamble
+	printf("__*_");
 	//iterates through input characters
 	for(i = 0; i < len; i++){
 		j=0;
